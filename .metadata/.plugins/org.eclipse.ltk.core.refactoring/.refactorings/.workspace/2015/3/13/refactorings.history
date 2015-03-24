@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete 5 resources" deleteContents="false" description="Delete 5 resources" element1="/ArduinoWeb" element2="/RMIConectorCliente" element3="/RMIConnectorInterfaces" element4="/RMIConnectorServer" element5="/Servers" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="5" stamp="1427196474488"/>
+<session version="1.0">&#x0A;<refactoring comment="Delete 5 resources" deleteContents="false" description="Delete 5 resources" element1="/ArduinoWeb" element2="/RMIConectorCliente" element3="/RMIConnectorInterfaces" element4="/RMIConnectorServer" element5="/Servers" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="5" stamp="1427196474488"/>&#x0A;<refactoring comment="Delete resource &apos;RMIConnectorServer/Mojarra2.2.5&apos;" deleteContents="false" description="Delete resource &apos;RMIConnectorServer/Mojarra2.2.5&apos;" element1="/RMIConnectorServer/Mojarra2.2.5" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1427196771448"/>
 </session>
