@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:x="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<x:loadBundle basename="resources.application" var="msg" />
+
+<h:head>
+	<title><h:outputText value="#{msg.tituloPrincipal}}" /></title>
+
+
+</h:head>
+
+<h:body>
+	<pm:content>
+		<h:form id="form1">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<pm:header title="#{msg.tituloPrincipal}" />
+
+				<p:poll interval="3" 
+					listener="#{controleMB.updateTemperatura}" update="lblTemp" />
+
+			<h:outputText id="lblTemp" 
+				value="Temperatura atual #{controleMB.temperatura}° C"
+				style="font-weight:bold; text-align:center"/>
+
+				
+
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" showIcon="true" showSummary="true"
+					severity="info,warn,error" />
+
+				<!-- led color sliders -->
+
+
+				<p:outputLabel id="lblSldRed" value="#{msg.cmdSlideRed}" />
+				<pm:inputSlider id="sldRed" value="#{controleMB.valorR}"
+					style="background-color:#FF0000" minValue="0" maxValue="255"
+					valueChangeListener="#{controleMB.changeLeds}" immediate="true"
+					pt:onchange="submit();" />
+
+				<p:outputLabel id="lblSldGreen" value="#{msg.cmdSlideGreen}" />
+				<pm:inputSlider id="sldGreen" value="#{controleMB.valorG}"
+					style="background-color:#00FF00" minValue="0" maxValue="255"
+					valueChangeListener="#{controleMB.changeLeds}" immediate="true"
+					pt:onchange="submit();" />
+
+				<p:outputLabel id="lblSldBlue" value="#{msg.cmdSlideBlue}" />
+				<pm:inputSlider id="sldBlue" value="#{controleMB.valorB}"
+					style="background-color:#0000FF" minValue="0" maxValue="255"
+					valueChangeListener="#{controleMB.changeLeds}" immediate="true"
+					pt:onchange="submit();" />
+
+
+			<br />
+			<p:separator />
+			<br />
+
+			<!-- motor sliders -->
+			<p:panel widgetVar="pnlMotor" header="#{msg.cmdMotor}"
+				style="text-align:center">
+				<pm:inputSlider id="sldMotor" value="#{controleMB.valorMotor}"
+					minValue="0" maxValue="180"
+					valueChangeListener="#{controleMB.changeMotor}" immediate="true"
+					pt:onchange="submit();" label="Motor" />
+			</p:panel>
+
+			<br />
+			<p:separator />
+			<br />
+
+			<!--  lampada on/off -->
+			<p:panel widgetVar="pnlLampada" header="#{msg.cmdButton}"
+				style="text-align:center">
+				<p:inputSwitch id="swtLampada" onLabel="#{msg.cmdOn}"
+					immediate="true" label="Lamp.:" offLabel="#{msg.cmdOff}"
+					value="#{controleMB.lampada}">
+					<x:ajax listener="#{controleMB.changeLampada}"
+						update="pnlLampada, msg"></x:ajax>
+
+				</p:inputSwitch>
+
+			</p:panel>
+
+			<p:outputLabel id="lblMensagem" value="#{msg.tituloMg}">
+				<p:inputText id="txtMensagem" value="#{controleMB.entrada}" />
+			</p:outputLabel>
+			<p:commandButton value="Clique" action="#{controleMB.sendMensagem}" />
+			<pm:footer title="#{msg.tituloRodape}" />
+		</h:form>
+
+	</pm:content>
+</h:body>
+</html>
