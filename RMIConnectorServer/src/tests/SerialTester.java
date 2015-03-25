@@ -1,6 +1,9 @@
 package tests;
 
+import javax.swing.JOptionPane;
+
 import ports.ControlePorta;
+import util.Constantes;
 
 /**
  * @author fernando-pucci
@@ -12,13 +15,21 @@ public class SerialTester {
 
 	public static void main(String[] args) {
 
-		ControlePorta cp = new ControlePorta("/dev/ttyACM0", 9600);
+		ControlePorta cp = new ControlePorta(Constantes.SERIAL_PORT,
+				Constantes.SERIAL_SPEED);
 
-		cp.enviaDados(args[0]);
+		do {
 
+			String mensagem = JOptionPane.showInputDialog(null,
+					"Digite mensagem:", "MENSAGEM",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			cp.sendComando(mensagem);
+
+		} while (JOptionPane.showConfirmDialog(null, "Deseja Continuar?",
+				"Continuar?", JOptionPane.YES_NO_OPTION) == 0);
 		cp.close();
-
-		System.out.println("OK");
+		System.out.println("Finalizando . . .");
 		System.exit(0);
 	}
 

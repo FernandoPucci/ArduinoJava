@@ -1,0 +1,34 @@
+package tests;
+
+import javax.swing.JOptionPane;
+
+import ports.ControlePorta;
+
+/**
+ * @author fernando-pucci
+ *
+ *         Classe principal de testes para comunicação serial com o Arduino
+ *
+ */
+public class SerialTester {
+
+	public static void main(String[] args) {
+
+		ControlePorta cp = null;
+
+		do {
+			cp = new ControlePorta("/dev/ttyACM0", 9600);
+			// cp.enviaDados(args[0]);
+
+			String mensagem = JOptionPane.showInputDialog(null,
+					"Digite mensagem:", "MENSAGEM", JOptionPane.OK_OPTION);
+			cp.enviaDados(mensagem);
+			cp.close();
+
+		} while (JOptionPane.showConfirmDialog(null, "Deseja Continuar?",
+				"Continuar?", JOptionPane.YES_NO_OPTION) == 0);
+		System.out.println("OK");
+		System.exit(0);
+	}
+
+}

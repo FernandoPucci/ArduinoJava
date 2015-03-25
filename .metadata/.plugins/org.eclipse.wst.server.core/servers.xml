@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="1" auto-publish-time="0" hostname="localhost" id="GlassPeixe" name="GlassPeixe" runtime-id="GlassPeixe" server-type="org.glassfish.jst.server.glassfish4" server-type-id="org.glassfish.jst.server.glassfish4" start-timeout="240" stop-timeout="240" timestamp="1">
+    <map key="generic_server_instance_properties" sunappserver.adminname="admin" sunappserver.adminpassword="123456" sunappserver.adminserverportnumber="4848" sunappserver.domainpath="/home/fernando-pucci/gf/glassfish4/glassfish/domains/domain1" sunappserver.keepSessions="true" sunappserver.serveraddress="localhost"/>
+    <list key="modules" value0="ArduinoWeb::org.eclipse.jst.jee.server:ArduinoWeb::jst.web::3.0"/>
+    <list key="Generic_Server_Modules_List" value0="org.eclipse.jst.jee.server:ArduinoWeb"/>
+  </server>
+</servers>
