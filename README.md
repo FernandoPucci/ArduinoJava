@@ -1,7 +1,7 @@
 # ArduinoJava
 Java Codes to interfacing with Arduino
 
-This applications Runs a Web page (JSF + Tomcat) with controllers that sent to Arduino's board through RMI client/server interface, which control arduino's board by serial commands. 
+This applications Runs a Web page (JSF + GlassFish) with controllers that sent to Arduino's board through RMI client/server interface, which control arduino's board by serial commands. 
 
 ArduinoWeb: Web Page with graphical controls; Back-end enabled to send RMI Messages to RMI Server
 
@@ -11,7 +11,7 @@ RMI Client: test messaging Aplication
 
 -----------------------------------------------------------------------------
 
-ArduinoWeb-> RMI Server (always running after Tomcat start and during utilization) -> Arduino Board
+ArduinoWeb-> RMI Server (always running after GlassFish start and during utilization) -> Arduino Board
 
 This software works into a Eclipse Workspace.
 
