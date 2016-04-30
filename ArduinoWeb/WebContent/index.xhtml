@@ -11,7 +11,7 @@
 <x:loadBundle basename="resources.application" var="msg" />
 
 <h:head>
-	<title><h:outputText value="#{msg.tituloPrincipal}}" /></title>
+	<title><h:outputText value="..:: #{msg.tituloPrincipal} ::.." /></title>
 
 
 </h:head>
@@ -26,7 +26,7 @@
 					listener="#{controleMB.updateTemperatura}" update="lblTemp" />
 
 			<h:outputText id="lblTemp" 
-				value="Temperatura atual #{controleMB.temperatura}° C"
+				value="Temperatura atual: #{controleMB.temperatura}"
 				style="font-weight:bold; text-align:center"/>
 
 				

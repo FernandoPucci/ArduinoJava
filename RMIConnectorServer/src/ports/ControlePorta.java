@@ -4,16 +4,20 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.NoSuchPortException;
 import gnu.io.SerialPort;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import javax.swing.JOptionPane;
 
 public class ControlePorta {
 	private OutputStream serialOut;
+	private BufferedReader serialIn;
 	private int taxa;
 	private String portaCOM;
 	private String comando;
+	private String information;
 
 	/**
 	 * Construtor da classe ControlePorta
@@ -68,9 +72,13 @@ public class ControlePorta {
 					port.setDTR(false);
 
 					serialOut = port.getOutputStream();
+					serialIn = new BufferedReader(new InputStreamReader(
+							port.getInputStream()));
+
 					port.setSerialPortParams(taxa, // taxa de transferência
-													// da
-													// porta serial
+
+							// da
+							// porta serial
 							SerialPort.DATABITS_8, // taxa de 10 bits 8 (envio)
 							SerialPort.STOPBITS_1, // taxa de 10 bits 1
 													// (recebimento)
@@ -97,6 +105,17 @@ public class ControlePorta {
 
 	}
 
+	public String getInformation() {
+		getThreadRecuperarDados().start();
+
+		if (information != null && !information.isEmpty()) {
+			return information;
+
+		}
+		return null;
+
+	}
+
 	/**
 	 * Método que fecha a comunicação com a porta serial
 	 */
@@ -111,8 +130,7 @@ public class ControlePorta {
 	}
 
 	/**
-	 * @param opcao
-	 *            - Valor a ser enviado pela porta serial
+	 * - Valor a ser enviado pela porta serial
 	 */
 	private Thread getThreadEnviaDados() {
 
@@ -121,6 +139,7 @@ public class ControlePorta {
 
 				try {
 					if (comando != null && !comando.isEmpty()) {
+						comando +=  "\n";
 						serialOut.write(comando.getBytes());
 
 						System.out.println("Enviando: " + comando);
@@ -130,9 +149,43 @@ public class ControlePorta {
 					serialOut.close();
 
 				} catch (IOException ex) {
+
+					System.out.println(ex.getMessage());
+
 					JOptionPane.showMessageDialog(null,
 							"Não foi possível enviar o dado. ", "Enviar dados",
 							JOptionPane.PLAIN_MESSAGE);
+
+					ex.printStackTrace();
+				}
+			}
+		};
+	}
+
+	/**
+	 * Retorna informacao lida na porta
+	 * 
+	 * @return informacao solicitada
+	 */
+	private Thread getThreadRecuperarDados() {
+
+		return new Thread() {
+			public void run() {
+				try {
+
+					if (serialIn.ready()) {
+						information = serialIn.readLine();
+					}
+
+				} catch (IOException ex) {
+
+					System.out.println(ex.getMessage());
+
+					JOptionPane.showMessageDialog(null,
+							"Não foi possível enviar o dado. ", "Enviar dados",
+							JOptionPane.PLAIN_MESSAGE);
+
+					ex.printStackTrace();
 				}
 			}
 		};

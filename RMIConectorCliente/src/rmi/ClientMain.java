@@ -75,8 +75,8 @@ public class ClientMain {
 	
 	public static void main(String[] args) {
 		ClientMain main = new ClientMain();
-		main.doTest();
-//		main.gatheringInformation();
+//		main.doTest();
+		main.gatheringInformation();
 	
 	}
 }

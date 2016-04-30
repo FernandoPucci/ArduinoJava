@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
+import javax.rmi.CORBA.Util;
+
 import ports.ControlePorta;
 import util.Constantes;
 
@@ -65,6 +67,7 @@ public class MessageImpl extends UnicastRemoteObject implements Message,
 
 		// TODO: fazer metodo que conecta ao arduino e busca e
 		// retornatemperatura atual
-		return info + " 23" + new Date(System.currentTimeMillis());
+		cp.getInformation();
+		return  cp.getInformation() + "°C - "+ util.Util.getDataFormatada(new Date(System.currentTimeMillis()));
 	}
 }
